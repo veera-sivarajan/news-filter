@@ -27,14 +27,12 @@ def get_data ():
 
 def cleanse (title_list):
     def helper (title):
-        points = 0
+        lower_title = title.lower()
         for word in avoid_words:
-            if word not in title.lower():
-                points += 1
-        if points == len(avoid_words):
-            return True 
-        else:
-            return False
+            if word in lower_title: 
+                return False
+        return True
+
     return filter(helper, title_list)
 
 def display_titles (title_list):
