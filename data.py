@@ -13,7 +13,8 @@ avoid_words = [ "instagram",
                 "cryptocurrency",
                 "whatsapp",
                 "amazon",
-                "tesla" ]
+                "tesla",
+                "ios" ]
 
 def get_data ():
     url = 'https://hacker-news.firebaseio.com/v0/topstories.json'
@@ -22,24 +23,24 @@ def get_data ():
     for id in topstories_id[0:10]:
         data = requests.get('https://hacker-news.firebaseio.com/v0/item/' +
                             str(id) + '.json?print=pretty').json()
-        result.append(data['title'])
+        result.append(data)
     return result
 
-def cleanse (title_list):
-    def helper (title):
-        lower_title = title.lower()
+def cleanse (news_list):
+    def helper (news_object):
+        lower_title = news_object['title'].lower()
         for word in avoid_words:
             if word in lower_title: 
                 return False
         return True
 
-    return filter(helper, title_list)
+    return filter(helper, news_list)
 
-def display_titles (title_list):
+def display_titles (news_list):
     count = 0
-    for title in title_list:
+    for news in news_list:
         count += 1
         print(str(count) + ".", end = " ")
-        print(title)
+        print(news['title'])
 
 display_titles(cleanse(get_data()))
