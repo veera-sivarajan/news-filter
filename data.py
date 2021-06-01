@@ -36,11 +36,15 @@ def cleanse (news_list):
 
     return filter(helper, news_list)
 
-def display_titles (news_list):
-    count = 0
+def link_and_titles (news_list):
+    result = []
     for news in news_list:
-        count += 1
-        print(str(count) + ".", end = " ")
-        print(news['title'])
+        temp = []
+        temp.append(news['url'])
+        temp.append(news['title'])
+        result.append(temp)
+    return result
 
-display_titles(cleanse(get_data()))
+data = link_and_titles(cleanse(get_data()))
+for ele in data:
+    print(ele)
