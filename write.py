@@ -1,18 +1,19 @@
 from data import *
 import os
 
-os.remove("news.html")
+os.remove("/home/veera/Projects/HNFilter/news/news.html")
 head = """<!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href=/home/veera/Projects/Blog/docs/style.css>
+<link rel="stylesheet" href=/home/veera/Projects/HNFilter/news/style.css>
 <meta charset="UTF-8">
 <meta name="viewport" content="initial-scale=1">
 <meta name="HandheldFriendly" content="true">
 """
 data = link_and_titles(cleanse(get_data()))
 
-file = open("news.html", "a")
+file = open("/home/veera/Projects/HNFilter/news/news.html", "a")
 file.write(head)
+file.write("<ol>")
 
 for ele in data:
     file.write("<li>")
@@ -21,5 +22,6 @@ for ele in data:
     file.write("</li>")
     file.write("\n")
 
+file.write("</ol>")
 file.close()
 
