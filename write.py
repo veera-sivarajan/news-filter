@@ -1,4 +1,5 @@
 from data import *
+from reddit_news import *
 import os
 
 os.remove("/home/veera/Projects/HNFilter/news/news.html")
@@ -9,18 +10,23 @@ head = """<!DOCTYPE html>
 <meta name="viewport" content="initial-scale=1">
 <meta name="HandheldFriendly" content="true">
 """
-data = link_and_titles(cleanse(get_data()))
+hn_data = link_and_titles(cleanse(get_data()))
+reddit_data = reddit_link_and_titles()
 
 file = open("/home/veera/Projects/HNFilter/news/news.html", "a")
 file.write(head)
 file.write("<ol>")
 
-for ele in data:
-    file.write("<li>")
-    line = "<a href=\"" + ele[0] + "\">" + ele[1] + "</a>"
-    file.write(line)
-    file.write("</li>")
-    file.write("\n")
+def write_links (data):
+    for ele in data:
+        file.write("<li>")
+        line = "<a href=\"" + ele[0] + "\">" + ele[1] + "</a>"
+        file.write(line)
+        file.write("</li>")
+        file.write("\n")
+
+write_links(hn_data)
+write_links(reddit_data)
 
 file.write("</ol>")
 file.close()

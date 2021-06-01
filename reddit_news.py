@@ -6,5 +6,13 @@ data = requests.get(url, headers = {'User-agent': 'your bot 0.1'}).json()
 
 news_list = data['data']['children']
 
-for news in news_list:
-    print(news['data']['title'])
+def reddit_link_and_titles ():
+    result = []
+    for news in news_list:
+        temp = []
+        temp.append(news['data']['url'])
+        temp.append(news['data']['title'])
+        result.append(temp)
+    return result
+
+# print(reddit_link_and_titles())

@@ -39,12 +39,13 @@ def cleanse (news_list):
 def link_and_titles (news_list):
     result = []
     for news in news_list:
-        temp = []
-        temp.append(news['url'])
-        temp.append(news['title'])
-        result.append(temp)
+        if (news['by'] != "whoishiring"):
+            temp = []
+            temp.append(news['url'])
+            temp.append(news['title'])
+            result.append(temp)
     return result
 
-data = link_and_titles(cleanse(get_data()))
-for ele in data:
-    print(ele)
+# data = link_and_titles(cleanse(get_data()))
+# for ele in data:
+#     print(ele)
