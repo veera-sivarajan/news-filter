@@ -43,9 +43,10 @@ def link_and_titles (news_list):
             temp = []
             temp.append(news['url'])
             temp.append(news['title'])
+            head = "https://news.ycombinator.com/item?id="
+            tail = str(news['id'])
+            comment = head + tail
+            temp.append(comment) # comments
             result.append(temp)
     return result
 
-# data = link_and_titles(cleanse(get_data()))
-# for ele in data:
-#     print(ele)

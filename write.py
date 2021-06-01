@@ -20,8 +20,11 @@ file.write("<ol>")
 def write_links (data):
     for ele in data:
         file.write("<li>")
-        line = "<a href=\"" + ele[0] + "\">" + ele[1] + "</a>"
-        file.write(line)
+        news_line = "<a href=\"" + ele[0] + "\">" + ele[1] + "</a>"
+        file.write(news_line)
+        comment_line = "<a href=\"" + ele[2] + "\" class=\"other\">" + "Comments" + "</a>"
+        file.write("\t | \t")
+        file.write(comment_line)
         file.write("</li>")
         file.write("\n")
 

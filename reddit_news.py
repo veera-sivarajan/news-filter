@@ -12,7 +12,10 @@ def reddit_link_and_titles ():
         temp = []
         temp.append(news['data']['url'])
         temp.append(news['data']['title'])
+        tail = news['data']['permalink']
+        head = "https://reddit.com"
+        comment = head + tail
+        temp.append(comment)
         result.append(temp)
     return result
 
-# print(reddit_link_and_titles())
